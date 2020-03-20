@@ -50,18 +50,16 @@ import time
 
 from definitionsV4 import *
 from initialization import *
-from accuracy import  *
+from accuracy import *
 import os
 
-os.environ["CUDA_VISIBLE_DEVICES"]="0"
+from node2vec import Node2Vec
 
-
-
-
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 # Data.
 # Input and target placeholders.
-input_ph,target_ph = create_placeholders(rand, batch_size_tr, num_nodes_min_max_tr, theta)
+input_ph, target_ph = create_placeholders(rand, batch_size_tr, num_nodes_min_max_tr, theta)
 
 # Connect the data to the model.
 # Instantiate the model.
@@ -78,7 +76,6 @@ loss_op_tr = sum(loss_ops_tr) / num_processing_steps_tr
 # Test/generalization loss.
 loss_ops_ge = create_loss_ops(target_ph, output_ops_ge)
 loss_op_ge = loss_ops_ge[-1]  # Loss from final processing step.
-
 
 optimizer = tf.train.AdamOptimizer(learning_rate, beta1, beta2, epsilon, use_locking)
 step_op = optimizer.minimize(loss_op_tr)
@@ -110,12 +107,11 @@ best_test_loss = 9999
 
 start_time = time.time()
 last_log_time = start_time
-feed_dict_train = create_feed_dict(rand, batch_size_tr, num_nodes_min_max_tr,
-                                   theta, input_ph, target_ph, True)
-
-feed_dict_test = create_feed_dict(rand, batch_size_tr, num_nodes_min_max_tr,
-                                  theta, input_ph, target_ph, False)
-
-
-
-
+input_graphs, target_graphs = generate_networkx_graphs(rand, batch_size_tr, num_nodes_min_max_tr, theta, True)
+node2vecs = []
+models = []
+for index in range(len(input_graphs)):
+    node2vecs.append(Node2Vec(input_graphs[index], dimensions=64, walk_length=30, num_walks=200, workers=4))
+    models.append(node2vecs[index].fit(window=10, min_count=1, batch_words=4))
+    models[index].wv.most_similar('2')
+    models[index].wv.save_word2vec_format(EMBEDDING_FILENAME = "./results/"+index++"embeddings.emb")

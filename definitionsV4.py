@@ -323,50 +323,6 @@ def generate_networkx_graphs(rand, num_examples, num_nodes_min_max, theta, place
     return input_graphs, target_graphs
 
 
-def create_placeholders(rand, batch_size, num_nodes_min_max, theta):
-    """Creates placeholders for the model training and evaluation.
-
-    Args:
-      rand: A random seed (np.RandomState instance).
-      batch_size: Total number of graphs per batch.
-      num_nodes_min_max: A 2-tuple with the [lower, upper) number of nodes per
-        graph. The number of nodes for a graph is uniformly sampled within this
-        range.
-      theta: A `float` threshold parameters for the geographic threshold graph's
-        threshold. Default= the number of nodes.
-
-    Returns:
-      input_ph: The input graph's placeholders, as a graph namedtuple.
-      target_ph: The target graph's placeholders, as a graph namedtuple.
-    """
-    # Create some example data for inspecting the vector sizes.
-    input_graphs, target_graphs, = generate_networkx_graphs(
-        rand, batch_size, num_nodes_min_max, theta, True)
-    input_ph = utils_tf.placeholders_from_networkxs(
-        input_graphs, force_dynamic_num_graphs=True)
-    target_ph = utils_tf.placeholders_from_networkxs(
-        target_graphs, force_dynamic_num_graphs=True)
-    return input_ph, target_ph
-
-
-def create_feed_dict(rand, batch_size, num_nodes_min_max, theta, input_ph,
-                     target_ph, training=True):
-    feed_dict_list = []
-    input_graphs = []
-    target_graphs = []
-    inputs, targets = generate_networkx_graphs(
-        rand, batch_size, num_nodes_min_max, theta, training, False)
-    for i in range(len(inputs)):
-        list_graph = []
-        list_graph.append(inputs[i])
-        list_target = []
-        list_target.append(targets[i])
-        input_graphs.append(utils_np.networkxs_to_graphs_tuple(list_graph))
-        target_graphs.append(utils_np.networkxs_to_graphs_tuple(list_target))
-    for i in range(len(target_graphs)):
-        feed_dict = {input_ph: input_graphs[i], target_ph: target_graphs[i]}
-        feed_dict_list.append(feed_dict)
-    return feed_dict_list
 
 def create_loss_ops(target_op, output_ops):
     """Create supervised loss operations from targets and outputs.
