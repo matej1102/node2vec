@@ -33,4 +33,4 @@ for index in range(len(input_graphs)):
     node2vecs.append(Node2Vec(input_graphs[index], dimensions=64, walk_length=15, num_walks=10, workers=4))
     models.append(node2vecs[index].fit(window=10, min_count=1, batch_words=4))
     models[index].wv.most_similar('2')
-    models[index].wv.save_word2vec_format(EMBEDDING_FILENAME = "./results/"+str(index)+"embeddings.emb")
+    models[index].wv.save_word2vec_format("./results/"+str(index)+"embeddings.emb")
