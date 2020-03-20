@@ -31,7 +31,7 @@ epsilon = 2e-10  # pôvodne 1e-08
 use_locking = False
 # Starting and ending image used for training
 train_start_image=0 #minimum 0
-train_end_image=10 #maximum 24
+train_end_image=3 #maximum 24
 # Starting and ending image used for testing
 test_start_image=24 #minimum 24
 test_end_image=27  #mmaximum 29

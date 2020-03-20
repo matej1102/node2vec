@@ -30,7 +30,7 @@ input_graphs, target_graphs = generate_networkx_graphs(rand, batch_size_tr, num_
 node2vecs = []
 models = []
 for index in range(len(input_graphs)):
-    node2vecs.append(Node2Vec(input_graphs[index], dimensions=64, walk_length=30, num_walks=200, workers=4))
+    node2vecs.append(Node2Vec(input_graphs[index], dimensions=64, walk_length=15, num_walks=10, workers=4))
     models.append(node2vecs[index].fit(window=10, min_count=1, batch_words=4))
     models[index].wv.most_similar('2')
     models[index].wv.save_word2vec_format(EMBEDDING_FILENAME = "./results/"+index++"embeddings.emb")
