@@ -238,7 +238,7 @@ def generate_graphs(img_path, solution_path,region, j, placeholder=False):
                     node_solution = 1
                     # pridani uzlu
                 file.write(str(index)+"\t"+str(node_solution)+"\n")
-                graph.add_node(node_solution, value=value, solution=node_solution)
+                graph.add_node(index, value=value, solution=node_solution)
                 # pridani hran
                 add_edges_to_graph(index, graph, img, row, column,region,images_solutions[i])
         graphs.append(graph)
