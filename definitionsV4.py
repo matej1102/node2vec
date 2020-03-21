@@ -207,7 +207,7 @@ def generate_graphs(img_path, solution_path,region, j, placeholder=False):
     img_solution_subsample = img_solution[::2, ::2]
 
     images = slice_blocks(img_subsample, 128, 128)
-    images = add_arrays(images, slice_blocks(img, 128, 128))
+    #images = add_arrays(images, slice_blocks(img, 128, 128))
 
     images_solutions = slice_blocks(img_solution_subsample, 128, 128)
     images_solutions = add_arrays(images_solutions, slice_blocks(img_solution, 128, 128))
