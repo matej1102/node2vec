@@ -3,6 +3,9 @@
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
+
+import os
+
 from initialization import *
 from scipy.spatial.distance import dice
 
@@ -224,6 +227,7 @@ def generate_graphs(img_path, solution_path,region, j, placeholder=False):
     for i in range(len(images)):
         index = 0 * 4096 - 1
         graph = nx.Graph()
+        file = open("./results/"+os.path.basename(os.path.dirname(solution_path))+"_"+str(i)+"solution.txt", "a")
         for row in range(0, 128):
             for column in range(0, 128):
                 index += 1
@@ -233,11 +237,12 @@ def generate_graphs(img_path, solution_path,region, j, placeholder=False):
                 if images_solutions[i][row][column] == 255:
                     node_solution = 1
                     # pridani uzlu
-
+                file.write(str(index)+"\t"+str(node_solution)+"\n")
                 graph.add_node(node_solution, value=value, solution=node_solution)
                 # pridani hran
                 add_edges_to_graph(index, graph, img, row, column,region,images_solutions[i])
         graphs.append(graph)
+        file.close()
     return graphs
 
 
