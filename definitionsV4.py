@@ -321,8 +321,9 @@ def generate_networkx_graphs(rand, num_examples, num_nodes_min_max, theta, place
         j = 1
         print(i)
         graphs = generate_graphs(input_images[i], target_images[i], j, placeholder)
-        all_graphs.append(graphs)
-        #for index in range(len(graphs)):
+
+        for index in range(len(graphs)):
+            all_graphs.append(graphs[index])
         #    input_graph, target_graph = graph_to_input_target(graphs[index])
         #    input_graphs.append(input_graph)
         #    target_graphs.append(target_graph)
