@@ -311,7 +311,7 @@ def generate_networkx_graphs(rand, num_examples, num_nodes_min_max, theta, place
     target_images = []
     input_graphs = []
     target_graphs = []
-
+    all_graphs = []
     for image_path, solution_path in zip(glob.glob("dataset/images/dir/*.png"), glob.glob("dataset/labels/dir/*.png")):
         input_images.append(image_path)
         target_images.append(solution_path)
@@ -321,11 +321,12 @@ def generate_networkx_graphs(rand, num_examples, num_nodes_min_max, theta, place
         j = 1
         print(i)
         graphs = generate_graphs(input_images[i], target_images[i], j, placeholder)
-        for index in range(len(graphs)):
-            input_graph, target_graph = graph_to_input_target(graphs[index])
-            input_graphs.append(input_graph)
-            target_graphs.append(target_graph)
-    return input_graphs, target_graphs
+        all_graphs.append(graphs)
+        #for index in range(len(graphs)):
+        #    input_graph, target_graph = graph_to_input_target(graphs[index])
+        #    input_graphs.append(input_graph)
+        #    target_graphs.append(target_graph)
+    return all_graphs #input_graphs, target_graphs
 
 
 
