@@ -26,8 +26,7 @@ best_test_loss = 9999
 
 start_time = time.time()
 last_log_time = start_time
-#input_graphs, target_graphs
-input_graphs  = generate_networkx_graphs(rand, batch_size_tr, num_nodes_min_max_tr, theta, True)
+input_graphs, target_graphs  = generate_networkx_graphs(rand, batch_size_tr, num_nodes_min_max_tr, theta, True)
 node2vecs = []
 models = []
 for index in range(len(input_graphs)):
