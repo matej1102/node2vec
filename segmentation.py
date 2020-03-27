@@ -1,12 +1,5 @@
-
-
 from definitionsV4 import *
-from initialization import *
-from accuracy import *
-import os
-
 from node2vec import Node2Vec
-
 
 last_iteration = 0
 logged_iterations = []
@@ -24,8 +17,6 @@ best_test_loss = 9999
 # training by simply executing this cell again.
 
 
-start_time = time.time()
-last_log_time = start_time
 input_graphs, target_graphs  = generate_networkx_graphs(rand, batch_size_tr, num_nodes_min_max_tr, theta, True)
 node2vecs = []
 models = []

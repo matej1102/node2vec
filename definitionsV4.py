@@ -6,44 +6,16 @@ from __future__ import print_function
 
 import os
 
-from initialization import *
-from scipy.spatial.distance import dice
-
-import collections
-import itertools
-import time
-import time
-
 import tensorflow as tf
-import graph_nets
 
-from pygments.lexer import include, combined
-
-import networkx as nx
-import numpy as np
-
-
-from graph_nets import graphs
-from graph_nets import utils_np
-from graph_nets import utils_tf
-from graph_nets.demos import models
-
-import glob
-
-import imageio
+from initialization import *
 
 """## Definície ku grafom"""
 
-import collections
 import itertools
-import time
-
-from pygments.lexer import include, combined
 
 from graph_nets import graphs
-from graph_nets import utils_np
 from graph_nets import utils_tf
-from graph_nets.demos import models
 import networkx as nx
 import numpy as np
 

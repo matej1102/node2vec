@@ -1,6 +1,5 @@
 """Inicializačné parametre k segmentácii"""
 
-import tensorflow as tf
 import numpy as np
 
 from tensorflow.python.framework import ops
