@@ -3,7 +3,8 @@
 import tensorflow as tf
 import numpy as np
 
-tf.reset_default_graph()
+from tensorflow.python.framework import ops
+ops.reset_default_graph()
 
 seed = 10
 rand = np.random.RandomState(seed=seed)
