@@ -22,7 +22,6 @@ from pygments.lexer import include, combined
 import networkx as nx
 import numpy as np
 
-tf.logging = tf.compat.v1.logging
 
 from graph_nets import graphs
 from graph_nets import utils_np
