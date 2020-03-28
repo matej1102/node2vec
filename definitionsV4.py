@@ -14,7 +14,7 @@ from initialization import *
 
 import itertools
 
-from graph_nets import graphs
+#from graph_nets import graphs
 from graph_nets import utils_tf
 import networkx as nx
 import numpy as np
@@ -25,7 +25,7 @@ import imageio
 
 SEED = 10
 np.random.seed(SEED)
-tf.set_random_seed(SEED)
+tf.random.set_seed(SEED)
 
 # @title Helper functions  { form-width: "30%" }
 
