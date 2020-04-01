@@ -15,7 +15,7 @@ from initialization import *
 import itertools
 
 #from graph_nets import graphs
-from graph_nets import utils_tf
+#from graph_nets import utils_tf
 import networkx as nx
 import numpy as np
 
